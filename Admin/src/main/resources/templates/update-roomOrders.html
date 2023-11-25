@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+
+<head th:replace = "~{fragments::header}">
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <ul th:replace = "~{fragments::sidebar}">
+  </ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav th:replace = "~{fragments::top-navbar}">
+      </nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <form class="form-horizontal" th:action="@{/update-roomOrders/{id}(id = ${roomUpdate.roomId})}" method="post" th:object = "${roomUpdate}"
+              enctype="multipart/form-data">
+          <fieldset>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="room_id">Room Id</label>
+              <div class="col-md-4">
+                <input id="room_id" th:field = "*{roomId}" name="room_id" class="form-control input-md" required="" type="text" readonly>
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="room_number">Hotel Name</label>
+              <div class="col-md-4">
+                <input id="room_number" th:field = "*{roomNumber}" name="room_number" class="form-control input-md" required="" type="text">
+              </div>
+            </div>
+
+            <!-- Select Basic -->
+            <!-- Hotel Select -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="room_hotel">Address Of Hotel</label>
+              <div class="col-md-4">
+                <select id="room_hotel" th:field="*{hotel}" name="hotel_id" class="form-control">
+                  <option th:value="null">-SELECT-</option>
+                  <option th:each="hotelOption : ${hotels}" th:value="${hotelOption.hotelId}" th:text="${hotelOption.hotelName}">
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Room Type Select -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="room_rt">Room Type</label>
+              <div class="col-md-4">
+                <select id="room_rt" th:field="*{roomType}" name="room_type_id" class="form-control">
+                  <option th:value="null">-SELECT-</option>
+                  <option th:each="roomTypeOption : ${roomTypes}" th:value="${roomTypeOption.roomTypeId}" th:text="${roomTypeOption.roomTypeName}">
+                  </option>
+                </select>
+              </div>
+            </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="image">Room Image (1336 x 768)</label>
+                  <div class="col-md-2">
+                    <input id="image" name="imageRoom" class="input-file" type="file">
+                  </div>
+                </div>
+              <div class="form-group">
+              <div class="col-md-2">
+                <input id="image1" name="imageRoom1" class="input-file" type="file">
+              </div>
+              </div>
+            <div class="form-group">
+              <div class="col-md-2">
+                <input id="image2" name="imageRoom2" class="input-file" type="file">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <!-- End of Main Content -->
+    <!-- Footer -->
+    <footer th:replace="~{fragments::footer}">
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a th:replace="~{fragments::scroll}">
+</a>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<div th:replace="~{fragments::script}"></div>
+
+</body>
+
+</html>

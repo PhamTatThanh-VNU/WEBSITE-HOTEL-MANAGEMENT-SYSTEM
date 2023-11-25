@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+
+<head th:replace = "~{fragments::header}">
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul th:replace = "~{fragments::sidebar}">
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace = "~{fragments::top-navbar}">
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <form class="form-horizontal" th:action="@{/update-product/{id}(id = ${hotelDto.hotelId})}" method="post" th:object = "${hotelDto}"
+                      enctype="multipart/form-data">
+                    <fieldset>
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="hotel_addresses">Address Of Hotel</label>
+                            <div class="col-md-4">
+                                <select id="hotel_addresses" th:field="*{address}" name="address" class="form-control">
+                                    <option th:value="null">-SELECT-</option>
+                                    <option th:each="address : ${addresses}"
+                                            th:value="${address.addressId}"
+                                            th:text="${address.detail + ', ' + address.state + ', ' + address.city + ', ' + address.country}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="hotel_id">Hotel ID</label>
+                            <div class="col-md-4">
+                                <input id="hotel_id" th:field = "*{hotelId}" name="hotel_id" class="form-control input-md" required="" type="text" readonly>
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="hotel_name">Hotel Name</label>
+                            <div class="col-md-4">
+                                <input id="hotel_name" th:field = "*{hotelName}" name="hotel_name" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+                        <!--Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="contact-number">Hotel ContactNumber</label>
+                            <div class="col-md-4">
+                                <input id="contact-number" th:field = "*{hotelContactNumber}" name="hotel_contact_number" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="hotel-email">Hotel Email</label>
+                            <div class="col-md-4">
+                                <input id="hotel-email" th:field = "*{hotelEmail}" name="hotel_email" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+                        <!--Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="description">Hotel Description</label>
+                            <div class="col-md-4">
+                                <input id="description" name="hotel_description" th:field = "*{hotelDescription}" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+                        <!--Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="hotel-floor-count">Hotel Floor Count</label>
+                            <div class="col-md-4">
+                                <input id="hotel-floor-count" name="hotel_floor_count" th:field = "*{hotelFloorCount}" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+                        <!--Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="hotel-room-capacity">Hotel Room Capacity</label>
+                            <div class="col-md-4">
+                                <input id="hotel-room-capacity" name="hotel_room_capacity" th:field = "*{hotelRoomCapacity}" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <!-- File Button -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="image">Hotel Image (1336 x 768)</label>
+                                    <div class="col-md-4">
+                                        <input id="image" name="imageProduct" class="input-file" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <footer th:replace="~{fragments::footer}">
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a th:replace="~{fragments::scroll}">
+</a>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<div th:replace="~{fragments::script}"></div>
+
+</body>
+
+</html>

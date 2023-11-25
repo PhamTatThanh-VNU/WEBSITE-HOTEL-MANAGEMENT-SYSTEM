@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org/">
+
+<head th:replace = "~{fragments::header}">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul th:replace = "~{fragments::sidebar}">
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="~{fragments::top-navbar}"></nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="input-group" style="width: 60%; margin-bottom: 20px;">
+                        <form th:action="@{/search-products/0}" method="get">
+                            <div class="input-group">
+                                <input type="text" class="form-control rounded" placeholder="Search" name="keyword" aria-label="Search" aria-describedby="search-addon" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">🧐</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <a th:href="@{/add-product}" class = "btn btn-primary">Add Hotel</a>
+                    <p th:if="${size == 0} ">No Hotels</p>
+                    <div th:if = "${success}" class = "text-center alert alert-success">
+                        <p th:text = "${success}"></p>
+                    </div>
+                    <div th:if = "${error}" class="text-center alert alert-danger">
+                        <p th:text = "${error}"></p>
+                    </div>
+                    <table class="table table-bordered" th:if = "${size > 0}">
+                        <thead>
+                        <tr>
+                            <th scope="col">Hotel Name</th>
+                            <th scope="col">Hotel ContactNumber</th>
+                            <th scope="col">Hotel Email</th>
+                            <th scope="col">Hotel Address</th>
+                            <th scope="col">Hotel Floor Count</th>
+                            <th scope="col">Hotel Room Capacity</th>
+                            <th scope="col">Hotel Description</th>
+                            <th scope="col">Hotel Image (1336 x 768)</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each = "hotel : ${hotels}">
+                            <th scope="row" th:text = "${hotel.hotelName}"></th>
+                            <td th:text = "${hotel.hotelContactNumber}"></td>
+                            <td th:text = "${hotel.hotelEmail}"></td>
+                            <td th:text = "${hotel.address.detail + ', ' + hotel.address.state + ', ' + hotel.address.city + ', ' + hotel.address.country}"></td>
+                            <td th:text = "${hotel.hotelFloorCount}"></td>
+                            <td th:text = "${hotel.hotelRoomCapacity}"></td>
+                            <td th:text = "${hotel.hotelDescription}"></td>
+                            <td>
+                                <img style="max-width: 100%; max-height: 100%;" alt="" th:src="'data:image/jpg;base64,' + ${hotel.image}">
+                            </td>
+                            <td><a th:href="@{/update-product/{id}(id= ${hotel.hotelId})}" class="btn btn-primary">Update</a></td>
+                            <td>
+                                <a th:href="@{/delete-product(id = ${hotel.hotelId})}"
+                                   class=" btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <!--Pagination  -->
+                    <!-- Pagination -->
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li th:if="${currentPage != 0}" class="page-item">
+                                <a th:href="@{'/products/' + ${currentPage - 1}}" class="page-link">Previous</a>
+                            </li>
+                            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${currentPage == i}" class="page-item">
+                                <a th:href="@{'/products/' + ${i}}" class="page-link" href="#">
+                                    <span th:text="${i + 1}"></span>
+                                </a>
+                            </li>
+                            <li th:if="${currentPage + 1 != totalPages}" class="page-item">
+                                <a th:href="@{'/products/' + ${currentPage + 1}}" class="page-link">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!--Pagination  -->
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer th:replace = "~{fragments::footer}">
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a th:replace = "~{fragments::scroll}">
+    </a>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <div th:replace = "~{fragments::script}"></div>
+</body>
+
+</html>
