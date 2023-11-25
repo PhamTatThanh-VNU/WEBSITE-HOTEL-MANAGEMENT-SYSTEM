@@ -22,7 +22,7 @@ public class Guests {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "contact_number" , unique = true)
+    @Column(name = "contact_number")
     private String contactNumber;
 
     @Column(name = "email")
