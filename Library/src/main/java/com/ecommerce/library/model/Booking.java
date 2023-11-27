@@ -25,7 +25,7 @@ public class Booking {
     private Date bookingDate;
 
     @Column(name = "duration_of_stay")
-    private int durationOfStay;
+    private Double durationOfStay;
 
     @Column(name = "check_in_date")
     private Date checkInDate;
@@ -49,5 +49,17 @@ public class Booking {
 
     @Column(name = "total_amount")
     private BigDecimal totalAmount;
+    public void calculateDurationOfStay(Date checkInDate, Date checkOutDate) {
+        if (checkInDate != null && checkOutDate != null) {
+            long timeInMillis = checkOutDate.getTime() - checkInDate.getTime();
+            long daysDifference = timeInMillis / (1000 * 60 * 60 * 24);
+
+            // Gán giá trị cho durationOfStay
+            this.durationOfStay = (double) daysDifference;
+        } else {
+            // Trường hợp một trong hai là null, có thể xử lý theo nhu cầu cụ thể
+            this.durationOfStay = null;
+        }
+    }
 
 }

@@ -44,7 +44,7 @@ public class BookingServiceImpl implements BookingService {
         booking.setStatus(false);
         booking.setCheckInDate(convert(bookingForm.getCheckInDate()));
         booking.setCheckOutDate(convert(bookingForm.getCheckOutDate()));
-        booking.setDurationOfStay(bookingForm.getDurationOfStay());
+        booking.calculateDurationOfStay(convert(bookingForm.getCheckInDate()),convert(bookingForm.getCheckOutDate()));
         booking.setTotalRoomsBooked(bookingForm.getTotalRoomBooked());
         optionalHotel.ifPresent(booking::setHotel);
 

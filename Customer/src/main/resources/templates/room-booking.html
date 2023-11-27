@@ -114,40 +114,6 @@
 
 
 <!-- Booking Start -->
-<div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="bg-white shadow" style="padding: 35px;">
-            <div class="row g-2">
-                <div class="col-md-10">
-                    <div class="row g-2">
-                        <div class="col-md-4">
-                            <div class="date" id="date1" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input"
-                                       placeholder="Check in" data-target="#date1" data-toggle="datetimepicker" />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="date" id="date2" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" placeholder="Check out" data-target="#date2" data-toggle="datetimepicker"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select">
-                                <option selected>Capacity</option>
-                                <option value="1">1 person</option>
-                                <option value="2">2 people</option>
-                                <option value="3">>2 people</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-primary w-100">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Booking End -->
 
 
@@ -219,12 +185,6 @@
                                 <div class="form-floating date" id="date4" data-target-input="nearest">
                                     <input type="text" class="form-control datetimepicker-input" id="checkout" th:field="*{checkOutDate}" name="check_out_date" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" required/>
                                     <label for="checkout">Check Out</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="duration" th:field="*{durationOfStay}" name="duration_of_stay" placeholder="Duration Stay" required pattern="[0-9]+" title="Please enter a valid number">
-                                    <label for="duration">Duration Stay</label>
                                 </div>
                             </div>
                             <div class="col-12">

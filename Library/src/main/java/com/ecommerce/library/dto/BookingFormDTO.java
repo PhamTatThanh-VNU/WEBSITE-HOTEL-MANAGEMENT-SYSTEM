@@ -14,7 +14,6 @@ public class BookingFormDTO {
         private String contactNumber;
         private String email;
         private java.util.Date bookingDate;
-        private Integer durationOfStay;
         private Integer totalRoomBooked;
         private java.util.Date checkInDate;
         private java.util.Date checkOutDate;

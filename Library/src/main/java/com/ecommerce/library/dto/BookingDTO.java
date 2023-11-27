@@ -17,7 +17,7 @@ public class BookingDTO {
     private Date checkInDate;
     private Date checkOutDate;
     private Integer totalRoomsBooked;
-    private Integer durationOfStay;
+    private Double durationOfStay;
     private double totalAmount;
     private String roomInfo;
     private Boolean status;
