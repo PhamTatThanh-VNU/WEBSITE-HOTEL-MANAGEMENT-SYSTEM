@@ -31,7 +31,6 @@ public interface BookingRepository extends JpaRepository<Booking,Long>{
             "JOIN RoomsBooked rb ON rb.booking.bookingId = b.bookingId " +
             "JOIN rb.room r " +
             "JOIN r.roomType rt " +
-            "JOIN ServiceOfHotel s ON s.hotel.hotelId = h.hotelId " +
             "GROUP BY b.bookingId, r.roomNumber, rt.roomTypeName,rb.id,g.id")
     List<BookingDTO> getBookingDTOs();
 

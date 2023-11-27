@@ -27,9 +27,12 @@ public class BookingController {
     public String roomBooking(@PathVariable("id")  Long room_id,
                               @PathVariable("id1") Long hotel_id,
                               Model model) {
+        Optional<Hotel> optionalHotelImg = hotelService.findById(hotel_id);
+        Hotel hotelImg = optionalHotelImg.orElseThrow();
         RoomImgDTO roomImgDTOS = roomService.getRoomImagesById(room_id);
         model.addAttribute("roomImg", roomImgDTOS);
         model.addAttribute("hotelFindId", hotel_id);
+        model.addAttribute("hotelImg",hotelImg);
         model.addAttribute("roomFindId", room_id);
         model.addAttribute("bookingForm",new BookingFormDTO());
         return "room-booking";
